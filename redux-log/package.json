@@ -1,0 +1,20 @@
+{
+  "name": "redux-log",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.0",
+    "whatwg-fetch": "^2.0.4"
+  }
+}
