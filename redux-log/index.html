@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>redux-log</title>
+</head>
+<body>
+    <div id="root"></div>
+    <!--<script type="text/javascript" src="build/app.bundle.js"></script>-->
+    <script>
+        function quicksort(arr) {
+            if(!arr.length) {
+                return []
+            }
+
+            var pivot = arr[0];
+            var rest = arr.slice(1);
+            return [].concat(quicksort(rest.filter(function (x) {
+                return x < pivot;
+            })),[pivot],quicksort(rest.filter(function (x) {
+                return x > pivot;
+            })));
+
+
+        }
+    </script>
+</body>
+</html>
