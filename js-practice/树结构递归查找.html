@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var tree1 = {
+        en: 'name1',
+        cn: '名字1',
+        ext: [
+            {
+                en: 'name2',
+                cn: '名字2',
+                ext: [
+                    {
+                        en: 'name3',
+                        cn: '名字3'
+                    },
+                    {
+                        en: 'name4',
+                        cn: '名字4',
+                        ext: [
+                            {
+                                en: 'name7',
+                                cn: '名字7',
+                                ext: [
+                                    {
+                                        en: 'name8',
+                                        cn: '名字8',
+                                        ext: []
+                                    },
+                                    {
+                                        en: 'name9',
+                                        cn: '名字9',
+                                        ext: [
+                                            {
+                                                en: 'name11',
+                                                cn: '名字11'
+                                            }
+                                        ]
+                                    },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        en: 'name5',
+                        cn: '名字5'
+                    },
+                    {
+                        en: 'name6',
+                        cn: '名字6',
+                        ext: []
+                    },
+                ]
+            },
+            {
+                en: 'name12',
+                cn: '名字12',
+                ext: [
+                    {
+                        en: 'name14',
+                        cn: '名字14',
+                        ext: [
+                            {
+                                en: 'name17',
+                                cn: '名字17',
+                                ext: [
+                                    {
+                                        en: 'name18',
+                                        cn: '名字18',
+                                        ext: []
+                                    },
+                                    {
+                                        en: 'name19',
+                                        cn: '名字19',
+                                        ext: [
+                                            {
+                                                en: 'name110',
+                                                cn: '名字110'
+                                            }
+                                        ]
+                                    },
+                                ]
+                            }
+                        ]
+                    },
+                ]
+            }
+        ]
+    };
+
+    const ge = (data,en) => {
+        let cnName = null;
+
+        if(data.en === en) {
+            cnName = data.cn;
+        } else if(data.ext) {
+            const getName = (data, en) => {
+                for(let i = 0 ,len = data.length ; i < len; i++ ) {
+                    if(cnName) {
+                        break;
+                    }
+                    let obj = data[i];
+
+                    if(obj.en === en) {
+                        cnName = obj.cn;
+                        break;
+                    }else {
+                        if(obj.ext) {
+                            getName(obj.ext, en);
+                        }
+                    }
+                }
+
+            };
+
+            getName(data.ext, en);
+        }
+
+        return cnName;
+
+    };
+
+    console.log(ge(tree1,'name110'));
+
+
+    /*let cnName = null;
+    const getName = (data, en) => {
+        for(let i = 0 ,len = data.length ; i < len; i++ ) {
+           if(cnName) {
+               break;
+           }
+           let obj = data[i];
+
+           if(obj.en === en) {
+               cnName = obj.cn;
+               break;
+           }else {
+               if(obj.ext) {
+                   getName(obj.ext, en);
+               }
+           }
+        }
+
+        return cnName;
+    };
+
+    console.log(getName(tree1,'name110'));*/
+
+    // const find = (data,en) => {
+    //
+    //     let cn = null;
+    //
+    //     for(let i = 0 ,len = data.length ; i < len; i++ ) {
+    //         if (data[i].en === en) {
+    //             cn = data[i].cn;
+    //             break;
+    //         } else {
+    //             if (data[i].ext && data[i].ext.length) {
+    //                 find(data[i].ext, en);
+    //             }
+    //         }
+    //     }
+    //
+    //     return cn;
+    // }
+
+    // console.log(find(tree1, 'name111'));
+
+    // const t1 = () => {
+    //     for (let i=0; i< 5; i++) {
+    //         console.log(i);
+    //         return "a";
+    //     }
+    // }
+    // console.log(t1());
+</script>
+</body>
+</html>

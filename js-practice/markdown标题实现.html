@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 树节点遍历
+    * markdown 文档
+    * */
+    const arr = ['# a','## b','## c','# d','# a','## b','## c','### c','## d','# d'];
+
+    const gn = (titleArr) => {
+        let ret = [];
+
+        let h1 = 0;
+        let h2 = 0;
+        let h3 = 0;
+        let h4 = 0;
+
+        for( let i = 0; i < titleArr.length; i++) {
+
+            let num = titleArr[i].indexOf(' ');
+
+            if(num === 1){
+                let hn = ''+ ++h1 ;
+                h2 = 0 ;
+                ret.push(hn)
+            }
+            if(num === 2 ){
+                let hn = h1 + '.' + (++h2);
+                h3 = 0;
+                ret.push(hn)
+            }
+            if(num === 3) {
+                let hn = h1 + '.' + h2 + '.' + (++h3);
+                h4 = 0;
+                ret.push(hn)
+            }
+
+            const tt = (num) => {
+
+            }
+        }
+
+        return ret;
+    }
+
+    console.log(gn(arr));
+</script>
+</body>
+</html>

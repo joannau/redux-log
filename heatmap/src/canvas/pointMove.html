@@ -1,0 +1,73 @@
+/*随机生成两个点，然后以两点为端点，进行运动，主要使用了SetInterval,对画布进行不断的擦除描绘的操作*/
+1 <!DOCTYPE html>
+2 <html xmlns="http://www.w3.org/1999/xhtml">
+3 <head>
+    4     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    5     <title></title>
+    6 </head>
+7 <body>
+8     <canvas id="dir" width="300" height="300"></canvas>
+9     <script type="text/javascript">
+    10         var canvas = document.getElementById("dir");
+    11         var ctx = canvas.getContext("2d");
+    12         var org = {
+        13             x: Math.random()*canvas.width,
+        14             y: Math.random() * canvas.height
+    15         };
+    16         var now = {
+        17             x: Math.random() * canvas.width,
+        18             y: Math.random() * canvas.height
+    19         };
+    20         var newxy = {
+        21             x: 0,
+        22             y: 0
+    23         };
+    24         function init() {
+        25             ctx.beginPath();
+        26             ctx.moveTo(org.x, org.y);
+        27             ctx.lineTo(now.x, now.y);
+        28             ctx.stroke();
+        29             math();
+        30         }
+    31
+    32         var i = 1;
+    33         function math() {
+        34             var wid = Math.abs(now.x - org.x);//x轴的长，绝对值
+        35             var hei = Math.abs(now.y - org.y);//y轴长
+        36             var length = Math.pow(Math.pow(wid, 2) + Math.pow(hei, 2), 1 / 2);//（长平方＋宽平方）开根 ，其实就是直角三角关系
+        37             if (i < length) {//通过SetInterval，按照Length方向每次运行1px
+            38                 if (org.x < now.x) {
+                39                     newxy.x = org.x +wid / length * i;
+                40                 }
+            41                 else {
+                42                     newxy.x = org.x - wid / length * i;
+                43                 }
+            44                 if (org.y < now.y) {
+                45                     newxy.y = org.y + hei / length * i;
+                46                 }
+            47                 else {
+                48                     newxy.y = org.y - hei / length * i;
+                49                 }
+            50
+            51                 i++;
+            52             }
+        53             comment();
+        54         }
+    55         function comment() {
+        56             ctx.beginPath();
+        57             ctx.arc(newxy.x, newxy.y, 3, 0, Math.PI * 2, true);
+        58             ctx.stroke();
+        59
+        60         }
+    61         function clean() {
+        62             ctx.clearRect(0, 0, canvas.width, canvas.height);
+        63         }
+    64         setInterval(function () {
+        65             clean();
+        66             init();
+        67         }, 10);
+    68         window.onload("load", init(), true);
+    69     </script>
+70
+71 </body>
+72 </html>
